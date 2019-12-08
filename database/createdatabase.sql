@@ -160,7 +160,7 @@ Create table discount (
 Create  table register(
 	regid int not null primary key  Identity(1,1),
      email nvarchar(200) not null,
-     status bit ,
+     status int ,
      note nvarchar(200)
 );
 -----------devvn_tinhthanhpho-----------------15-

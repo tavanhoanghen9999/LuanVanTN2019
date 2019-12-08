@@ -22,6 +22,7 @@ function getNewProducts(callback, pagesize, page) {
         }
     });
 }
+
 //binding new products
 function bindingNewPr(data) {
     if (data.success) {

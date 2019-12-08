@@ -23,70 +23,73 @@ function getInvoidFrSv(active, callback,bol) {
     });
 }
 function addInvoidSocket(data) {
-    var item = data.data.data.invoi;
-    var view = '';
-    for (var j in data.data.data.invoiceproduct) {
-        var prd = data.data.data.invoiceproduct[j];
-        view += '<div class="k item-prd">' +
-            '<div class="k img-prd"style="background-image:url(' + serverfile + prd.product.image + ')"></div > ' +
-            '<div class="k f-dt-it">' +
-            '<span class="k t t-dt-od">' + prd.product.prname + '</span>' +
-            '<span class="k n-tt-prd">Total:</span>' +
-            '<span class="k tt-prd">' + prd.invoidprd.total + '</span>' +
+    $(".bd-tab-it-od-delete").remove();
+    if (data) {
+        var item = data.data.data.invoi;
+        var view = '';
+        for (var j in data.data.data.invoiceproduct) {
+            var prd = data.data.data.invoiceproduct[j];
+            view += '<div class="k item-prd">' +
+                '<div class="k img-prd"style="background-image:url(' + serverfile + prd.product.image + ')"></div > ' +
+                '<div class="k f-dt-it">' +
+                '<span class="k t t-dt-od">' + prd.product.prname + '</span>' +
+                '<span class="k n-tt-prd">Total:</span>' +
+                '<span class="k tt-prd">' + prd.invoidprd.total + '</span>' +
+                '</div>' +
+                '</div>';
+        }
+
+        $("#f-ap-it-iv").append('<div class=" k bd-tab-it-od bd-tab-it-od-delete">' +
+            '<div class= "k tab-it-od">' +
+            '<div class="k tab-l-it-od">' +
+            '<div class="k tab-sml-od">' +
+            '<span class="k t t-note-od">Order code: </span>' +
+            '<span class="k t t-main-od">' + item.codeinvoice + '</span>' +
             '</div>' +
-            '</div>';
+            '<div class="k tab-sml-od">' +
+            '<span class="k t t-note-od">Name custemer: </span>' +
+            '<span class="k t t-main-od">' + item.namecustomer + '</span>' +
+            '</div>' +
+            '<div class="k tab-sml-od">' +
+            '<span class="k t t-note-od">Phone number: </span>' +
+            '<span class="k t t-main-od">' + item.phonenumber + '</span>' +
+            '</div>' +
+            '<div class="k tab-sml-od">' +
+            '<span class="k t t-note-od">Adress: </span>' +
+            '<span class="k t t-main-od">' + item.adress + '</span>' +
+            '</div>' +
+            '<div class="k tab-sml-od">' +
+            '<span class="k t t-note-od">Email: </span>' +
+            '<span class="k t t-main-od">' + item.email + '</span>' +
+            '</div>' +
+            '<div class="k tab-sml-od">' +
+            '<span class="k t t-note-od">Total money: </span>' +
+            '<span class="k t t-main-od">' + formatNumber(item.totalmoney) + ' đ</span>' +
+            '</div>' +
+            '<div class="k tab-sml-od">' +
+            '<span class="k t t-note-od">Code discount: </span>' +
+            '<span class="k t t-main-od">' + (item.codediscount != null ? item.codediscount : '0') + '</span>' +
+            '</div>' +
+            '<div class="k tab-sml-od">' +
+            '<span class="k t t-note-od">Note: </span>' +
+            '<span class="k t t-main-od">' + (item.note != null ? item.note : '') + '</span>' +
+            '</div>' +
+            '</div>' +
+            '<div class="k tab-r-it-od">' +
+            //product here
+            view +
+            '<span class="bnt-success-it"onclick="successOrder(' + item.ivid + ')">Success</span>' +
+            '</div>' +
+            '</div>' +
+            '</div>');
     }
-
-    $("#f-ap-it-iv").append('<div class=" k bd-tab-it-od">' +
-        '<div class= "k tab-it-od">' +
-        '<div class="k tab-l-it-od">' +
-        '<div class="k tab-sml-od">' +
-        '<span class="k t t-note-od">Order code: </span>' +
-        '<span class="k t t-main-od">' + item.codeinvoice + '</span>' +
-        '</div>' +
-        '<div class="k tab-sml-od">' +
-        '<span class="k t t-note-od">Name custemer: </span>' +
-        '<span class="k t t-main-od">' + item.namecustomer + '</span>' +
-        '</div>' +
-        '<div class="k tab-sml-od">' +
-        '<span class="k t t-note-od">Phone number: </span>' +
-        '<span class="k t t-main-od">' + item.phonenumber + '</span>' +
-        '</div>' +
-        '<div class="k tab-sml-od">' +
-        '<span class="k t t-note-od">Adress: </span>' +
-        '<span class="k t t-main-od">' + item.adress + '</span>' +
-        '</div>' +
-        '<div class="k tab-sml-od">' +
-        '<span class="k t t-note-od">Email: </span>' +
-        '<span class="k t t-main-od">' + item.email + '</span>' +
-        '</div>' +
-        '<div class="k tab-sml-od">' +
-        '<span class="k t t-note-od">Total money: </span>' +
-        '<span class="k t t-main-od">' + formatNumber(item.totalmoney) + ' đ</span>' +
-        '</div>' +
-        '<div class="k tab-sml-od">' +
-        '<span class="k t t-note-od">Code discount: </span>' +
-        '<span class="k t t-main-od">' + (item.codediscount != null ? item.codediscount : '0') + '</span>' +
-        '</div>' +
-        '<div class="k tab-sml-od">' +
-        '<span class="k t t-note-od">Note: </span>' +
-        '<span class="k t t-main-od">' + (item.note != null ? item.note : '') + '</span>' +
-        '</div>' +
-        '</div>' +
-        '<div class="k tab-r-it-od">' +
-        //product here
-        view +
-        '<span class="bnt-success-it"onclick="successOrder(' + item.ivid + ')">Success</span>' +
-        '</div>' +
-        '</div>' +
-        '</div>');
-
 }
 function bindingNewInvoidFrSv(data, bol) {
     if (bol) {
         $(".bd-tab-it-od").remove();
     }
     if (data.success && data.data.length > 0) {
+
         for (var i in data.data) {
             var item = data.data[i].invoi;
             var view = '';
@@ -308,10 +311,10 @@ function filterOrderBySearchBox(callback) {
 
 function bindingDataFilter(data) {
     if (istab) {
-        bindingNewInvoidFrSv(data);
+        bindingNewInvoidFrSv(data,true);
     }
     else {
-        bindingOldInvoidFrSv(data);
+        bindingOldInvoidFrSv(data,true);
     }
 }
 
