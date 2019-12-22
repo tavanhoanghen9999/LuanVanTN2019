@@ -101,12 +101,15 @@ namespace ProjectWebShop.Controllers.invoice
         {
             var mess = new MimeMessage();
             mess.From.Add(new MailboxAddress("HomeShop", "homeshophen@gmail.com"));
-            mess.To.Add(new MailboxAddress("Dotnet tranning", email));
+            mess.To.Add(new MailboxAddress("HomeShop", email));
             mess.Subject = "Thông tin về đơn hàng của bạn trên HomeShop";
             mess.Body = new TextPart("Plain")
             {
-                Text = "Chúng tôi đã ghi nhận đơn hàng của bạn. Mã đơn hàng của bạn là " + code +
-                ". Nếu có thắc mắc vui lòng liên hệ 180 Cao Lỗ, Phường 4, Quận 8 hoặc sdt: 0969399928" +
+                Text = "Chúng tôi đã ghi nhận đơn hàng của bạn." +
+                " Mã đơn hàng của bạn là " + code +
+                ". Nếu có thắc mắc vui lòng liên hệ 180 Cao Lỗ, Phường 4, Quận 8 " +
+                "Tổng đài trực tuyến: 0969399928" +
+           
                 "Cảm ơn bạn đã mua hàng!"
             };
             using (var client = new SmtpClient())

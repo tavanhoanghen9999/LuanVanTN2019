@@ -48,8 +48,8 @@ function bindingPdtByLine(data) {
                 '<div class="k f-pdt-name">' +
                 '<span class="k t name-product">' + data[i].prname + '</span>' +
                
-                '<span class="k t total-pdt">Total: ' + data[i].total + '</span>' +
-                '<span class="k t total-pdt">Note: ' + data[i].note + '</span>' +
+                //'<span class="k t total-pdt">Total: ' + data[i].total + '</span>' +
+                '<span class="k t note-pdt">Note: ' + data[i].note + '</span>' +
                 '</div>' +
                 '<div class="k f-pdt-name">' +
                 '<span class="k t name-product">Saleprice: ' + formatNumber(data[i].price) + ' đ</span>' +

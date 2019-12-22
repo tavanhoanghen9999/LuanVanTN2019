@@ -1,4 +1,4 @@
-﻿showLoading();
+﻿//showLoading();
 getProduct();
 $(".list-unstyled").remove();
 var ttmoney = 0;
@@ -97,6 +97,7 @@ function deletePrInCart(id) {
 
 //binding data
 function bindingPrById(data, numb, po) {
+    destroyLoading();
     if (data.success) {
         var pr = data.data.product;
         var x = parseInt(pr.price);
@@ -109,7 +110,7 @@ function bindingPrById(data, numb, po) {
             '<div class= "k img-prd" style="background-image:url(' + serverfile + pr.image + ')"></div>' +
             '<div class="k f-note-prd">' +
             '<span class="k t-name-prd">' + pr.prname + '</span>' +
-            '<span class="k t-vs2">Cung cấp bởi: Fooody</span>' +
+            '<span class="k t-vs2">Cung cấp bởi: HomeShop</span>' +
             '<span class="bnt-remove-prd" onclick="deletePrInCart(' + pr.prid + ')">Xóa</span>' +
             '</div>' +
             '<div class=" k f-price-prd">' +
@@ -123,7 +124,7 @@ function bindingPrById(data, numb, po) {
             '</div>' +
             '</div>' +
             '</div >');
-        destroyLoading();
+        
     }
     else {
         bootbox.alert("Có lỗi xảy ra vui lòng thử lại");

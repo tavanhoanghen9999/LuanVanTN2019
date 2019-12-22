@@ -19,6 +19,7 @@ function bindingPrById(data) {
     var pr = data.data;
     if (data.success) {
         $("#name-prd").text(pr.product.prname);
+        $("#note-prd").text(pr.product.note);
         $("#price-pr").text(formatNumber(pr.product.price) + " đ");
         $("#old-price").text(formatNumber(pr.product.oldprice) + " đ");
 
@@ -61,7 +62,7 @@ function getSamePrd(lnid, callback) {
 //binding same product
 function bindingSamePr(data) {
     if (data.success) {
-        for (var i = 1; i < data.data.length; i++) {
+        for (var i = 0; i < data.data.length; i++) {
             var item = data.data[i];
             var x = parseInt(item.price);
             var y = parseInt(item.oldprice);
@@ -72,6 +73,7 @@ function bindingSamePr(data) {
                 '<div class= "k f-it-more" >' +
                 '<div class="k img-pr-more" style="background-image:url(' + serverfile + item.image + ')"></div>' +
                 '<span class="k t-name-pr-more">' + item.prname + '</span>' +
+               
                 '<span class="k t-price-more">' + formatNumber(item.price) + ' đ</span>' +
                 '<span class="k t-prds-more">' + formatNumber(item.oldprice) + ' đ</span>' +
                 '<span class="k t-prds-dc">' + temp + '%</span>' +
@@ -127,7 +129,7 @@ function changeNumber(bool) {
     }
 }
 getDayNextWeek();
-//get time deliver
+//get time deliver//ngày giao dự kiến
 function getDayNextWeek() {
     var today = new Date();
     var dd = String(today.getDate() + 7).padStart(2, '0');

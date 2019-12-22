@@ -8,7 +8,7 @@
 var formData = new FormData();
 function Login() {
     showLoading();// md5($('#t-pass').val())
-    var data = { "email": $('#t-email').val(), "password": $('#t-pass').val(),"roles":2 };
+    var data = { "email": $('#t-email').val(), "password":$('#t-pass').val(),"roles":2 };
     $.ajax({
         url: linkserver + 'Authorization/login',
         type: 'POST',

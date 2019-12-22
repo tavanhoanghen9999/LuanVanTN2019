@@ -48,9 +48,9 @@
     .img-more {
         width: 100%;
         background-position: center;
-        background-size: cover;
+        background-size: contain;
         background-repeat: no-repeat;
-        height: 70px;
+        height: 100px;
         border-radius: 3px;
         cursor: pointer;
     }
@@ -199,13 +199,13 @@
         width: 100%;
     }
 
-    .bd-id-pr {
-    }
+  
 
     .f-it-more {
         border: 1px solid rgba(51,51,51,0.2);
         border-radius: 3px;
         cursor: pointer;
+        height:300px;
     }
         .f-it-more:hover {
             -webkit-transform: scale(1.03);
@@ -308,7 +308,7 @@
     }
 
     .bd-name-tt {
-        padding-bottom: 20px;
+        padding-bottom: 5px;
     }
 
     .bd-price {

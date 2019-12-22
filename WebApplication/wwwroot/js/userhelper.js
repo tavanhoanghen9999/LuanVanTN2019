@@ -1,6 +1,11 @@
 ﻿var linkserver = "https://localhost:44337/api/";
 var serverfile = "https://localhost:44337/images/";
 var serverfileuser = "https://localhost:44337/user/";
+
+//cau hinh iis
+//var linkserver = "https://192.168.1.4:2299/api/";
+//var serverfile = "https://192.168.1.4:2299/images/";
+//var serverfileuser = "https://192.168.1.4:2299/user/";
 checkTokenServer();
 //format money
 function formatNumber(yourNumber) {
@@ -110,7 +115,7 @@ function showFormSignIn() {
 function login() {
     var email = $('#lg-inp-email').val();
     var pass = $('#lg-inp-pass').val();
-    var model = { 'email': email, 'password': md5(pass), 'roles': 1 };
+    var model = { 'email': email, 'password': pass, 'roles': 1 };
     $.ajax({
         url: linkserver + 'Authorization/login',
         type: 'POST',
@@ -193,14 +198,19 @@ function signIn() {
     var email = $("#signin-input").val();
     var pas = $("#pass-input").val();
     var pasconf = $("#passconf-input").val();
-    if (pas.trim() != pasconf.trim) {
+    if (pas.trim() != pasconf.trim()) {
         //
+        return;
+    }
+    //kiem tra mail
+    if (!checkEmail(email.trim())) {
+        bootbox.alert("Hay nhap dia chi email hop le.\nExample@gmail.com");
         return;
     }
     else {
         var model = { "email": email, "password": pas.trim() };
         $.ajax({
-            url: linkserver + 'Authorization/checkToken',
+            url: linkserver + 'Authorization/signin',
             type: 'POST',
             dataType: 'json',
             data: JSON.stringify(model),
@@ -215,10 +225,12 @@ function signIn() {
             },
             success: function (data) {
                 if (data.success) {
-                    return true;
+                    $("#modalSignIn").toggle();
+                    bootbox.alert("Them tai khoan thanh cong");
                 }
                 else {
-                    return false;
+                    $("#modalSignIn").toggle();
+                    bootbox.alert("Them tai khoan that bai");
                 }
             }
         });
@@ -484,3 +496,17 @@ function registerEmail() {
         }
     });
 }
+
+// check mail
+function checkEmail(email) {
+    //var email = document.getElementById('email');
+    var filter = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+    if (!filter.test(email.value)) {
+        //alert('Hay nhap dia chi email hop le.\nExample@gmail.com');
+        email.focus;
+        return false;
+    }
+    else {
+        return true;
+    }
+} 

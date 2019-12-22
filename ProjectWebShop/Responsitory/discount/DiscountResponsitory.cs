@@ -55,7 +55,7 @@ namespace ProjectWebShop.Responsitory.discount
 
         public IEnumerable<Discount> GetAllDiscount(int page,int pagesize)
         {
-            return context.Discount.OrderBy(x => x.endday).ToList().Skip(page*pagesize).Take(pagesize);
+            return context.Discount.OrderByDescending(x => x.endday).ToList().Skip(page*pagesize).Take(pagesize);
         }
 
         public Discount GetDisCountByCode(string code)

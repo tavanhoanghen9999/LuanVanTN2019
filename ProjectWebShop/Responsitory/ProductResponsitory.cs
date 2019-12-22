@@ -26,7 +26,7 @@ namespace ProjectWebShop.Responsitory
             {
                 product,
                 images = context.ImageProducts.Where(image => image.prid == product.prid).ToList()
-            });
+            }).OrderBy(x=>x.product.prid);
             return pdt.ToList();
         }
         public dynamic GetProductByLinePr(int id)
@@ -39,7 +39,7 @@ namespace ProjectWebShop.Responsitory
             try
             {
                 return context.Products
-                               .Where(p => p.lineprid == id && p.status==0).ToList();
+                               .Where(p => p.lineprid == id && p.status==0).ToList().OrderByDescending(x=>x.prid).Take(4);
             }
             catch (Exception e)
             {

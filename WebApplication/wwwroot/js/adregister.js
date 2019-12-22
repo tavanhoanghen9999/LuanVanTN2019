@@ -1,7 +1,7 @@
-﻿$(document).ready(function () {
-    showLoading();
-    //var bol = checkTokenServerAd();
-});
+﻿//$(document).ready(function () {
+//    showLoading();
+//    var bol = checkTokenServerAd();
+//});
 var page = 0;
 var pagesize = 40;
 getAllRegister(page, pagesize, bindingRegister);

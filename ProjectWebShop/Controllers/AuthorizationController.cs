@@ -59,7 +59,12 @@ namespace ProjectWebShop.Controllers
                 var usud = new Users();
                 usud.email = user.email;
                 usud.password = user.password;
+                usud.roles = 2;
+                usud.createday = DateTime.Now;
+                usud.birthday = DateTime.Now;
+                usud.active = 1;
                 m_userResponsitory.InsertUser(usud);
+               
                 data.success = true;
             }
             catch (Exception e)

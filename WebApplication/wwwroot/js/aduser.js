@@ -10,12 +10,12 @@ var page = 0;
 var role = 1;//admin
 getUserByRole(role, 0, true, bindingUserByRole);//get user
 //lazyload user
-$(window).scroll(function () {
-    if ($(window).scrollTop() + $(window).height() === $(document).height()) {
-        page = page + 1;
-        getUserByRole(role, page, false, bindingUserByRole);//get user
-    }
-});
+//$(window).scroll(function () {
+//    if ($(window).scrollTop() + $(window).height() === $(document).height()) {
+//        page = page + 1;
+//        getUserByRole(role, page, false, bindingUserByRole);//get user
+//    }
+//});
 //show form
 function showFormCreateUs() {
     formdata = new FormData();
@@ -51,7 +51,7 @@ function getUserByRole(roleid,page,bol,callback ) {
     //callAjax(tp.get, "user/getUserByRole?roleid=" + roleid + "&page=" + page+"&pagesize=1", null, bindingUserByRole);
 }
 function bindingUserByRole(data,bol) {
-    if (data != null) {
+    if (data) {
         if (bol) {//not lazyload
             $(".bd-inf-user").remove();
         }
@@ -155,7 +155,7 @@ function insertUser() {
         formdata.append("phone", $('#inp-phone').val());
         formdata.append("address", $('#inp-addr').val());
         formdata.append("birthday", $('#inp-bd').val());
-        formdata.append("password", md5($('#inp-pass').val()));
+        formdata.append("password", $('#inp-pass').val());
         formdata.append("gender", sex);
         var today = new Date();
         var dd = String(today.getDate()).padStart(2, '0');
@@ -295,6 +295,7 @@ function showpassUd() {
 }
 //showtap update user 
 function showFormUd(emailus) {
+    debugger
     formdataUd = new FormData();
     callAjax(tp.post, "user/getUserByEmail?email=" + emailus, null, bindingFormUpdate);
 }
@@ -361,7 +362,7 @@ function gotoUpdate() {
         formdataUd.append("phone", $('#ed-phone').val());
         formdataUd.append("address", $('#ed-address').val());
         formdataUd.append("birthday", $('#ed-birthday').val());
-        formdataUd.append("password", md5($('#ed-pass-ud').val()));
+        formdataUd.append("password", $('#ed-pass-ud').val());
         formdataUd.append("gender", parseInt($("#sl-gd-ud").val()));
         formdataUd.append("usid", usid);
 
